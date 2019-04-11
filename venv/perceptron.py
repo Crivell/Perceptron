@@ -46,29 +46,31 @@ class Percepton:
     def lern(self):
         a = 0;
         # for i in range(0,2222222222):
-        for x in range(0,len(self.p[0])):
-            while True:
+        while True:
+            wat = 0
+            for x in range(0,len(self.p[0])):
                 a = (self.w * self.p[0][x]) + (self.w2 * self.p[1][x]) + self.b
 
                 if(a>0):
                     y = 1
                 else:
-                    y = -1
+                    y = 0
                 e = self.t[x] - y
                 if(e > 0 or e < 0):
-
-                    self.w = self.w + e * (self.p[0][x] + self.p[1][x])
-                    self.w2 = self.w2 + e * (self.p[0][x] + self.p[1][x])
+                    wat = 1
+                    self.w = self.w + e * self.p[0][x]
+                    self.w2 = self.w2 + e * self.p[1][x]
                     self.b = self.b + e
+            if (wat == 0):
+                break
 
-                else:
-                    break
+
 
 
 
 
     def what(self,x,y):
-        a = self.w * x + self.w * y + self.b
+        a = self.w * x + self.w2 * y + self.b
         print(a)
         if (a > 0):
             y = 1
